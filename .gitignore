@@ -1,0 +1,6 @@
+# Ignore everything
+.meta
+!.gitignore
+# Except any Assets folder and its contents
+godoc_0302/ 
+!godoc_0302/Assets/Scripts/*.cs 
