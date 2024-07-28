@@ -33,6 +33,10 @@ public class newSpanwer : MonoBehaviour
                     float boxSize = spawnList[Count - 1].GetComponent<BoxCollider2D>().size.x;
                     offset = spawnList[Count - 1].transform.position.x + boxSize / 2;
                 }
+                else
+                {
+                    Vector3 initPos = transform.position;
+                }
 
                 int index = Random.Range(0, prefab.Length);
                 //get prefab's BoxCollider2D's  size

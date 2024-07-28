@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.Mathematics;
 using UnityEngine;
 
 public class objcetSpawner : MonoBehaviour
@@ -12,9 +11,15 @@ public class objcetSpawner : MonoBehaviour
     private int spawnCount = 0; // 현재 생성된 객체 수
     private int maxSpawnCount = 10; // 최대 생성할 객체 수
 
+    public Transform[] spwanPoint;
+    public int phase = 1;
     private void Awake()
     {
-        InvokeRepeating("SpawnMob", 0.4f, 0.3f); // 2초 후에 시작해서 5초마다 몹 생성
+        if (phase == 1)
+            InvokeRepeating("SpawnMob", 0.4f, 0.3f); // 2초 후에 시작해서 5초마다 몹 생성
+
+        else if (phase == 2)
+            InvokeRepeating("SpwanOnPoint", 0.4f, 0.3f); // 2초 후에 시작해서 5초마다 몹 생성
     }
 
     void SpawnMob()
@@ -39,5 +44,22 @@ public class objcetSpawner : MonoBehaviour
         clone.GetComponent<SpriteRenderer>().color = Color.red;
 
         spawnCount++; // 생성된 객체 수 증가
+    }
+
+    void SpwanOnPoint()
+    {
+        if (spawnCount <= maxSpawnCount)
+        {
+            int prefabIndex = Random.Range(0, spwanPoint.Length);
+            // int sqwanIndex = Random.Range(0, spwanPoint.Length);using Unity.Mathematics;
+            Vector3 pos = spwanPoint[prefabIndex].position;
+            GameObject obj = Instantiate(prefab, pos, Quaternion.identity);
+            obj.name = "clone";
+
+            spawnCount++;
+            Vector3 moveDirection = Vector3.right;
+            obj.GetComponent<movemnob>().setUp(moveDirection);
+        }
+
     }
 }
