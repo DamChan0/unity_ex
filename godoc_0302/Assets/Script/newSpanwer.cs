@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 
 public class newSpanwer : MonoBehaviour
@@ -9,20 +11,27 @@ public class newSpanwer : MonoBehaviour
     private GameObject[] prefab;
     public bool RandomOn = false;
     public int MaxSpawn = 10;
+
+    private float spwanTime;
+    public int mode = 0;
     private List<GameObject> spawnList = new List<GameObject>();
     [SerializeField]
     private void Awake()
     {
-        genObject();
+
 
     }
 
+    private void Update()
+    {
+        genObject();
+    }
 
 
     void genObject()
     {
 
-        if (!RandomOn)
+        if (mode == 0)
         {
             for (int Count = 0; Count < MaxSpawn; Count++)
             {
@@ -50,6 +59,19 @@ public class newSpanwer : MonoBehaviour
                 // Quaternion rotation = Quaternion.Euler(0, 0, i * 10);
 
                 // Instantiate(prefab, pos, rotation);
+            }
+        }
+
+        else if (mode == 1)
+        {
+            spwanTime += Time.deltaTime;
+            if (spwanTime > 0.5f)
+            {
+                GameObject bullet = Instantiate(prefab[0], transform.position, Quaternion.identity);
+                bullet.GetComponent<movemnob>().setUp(Vector3.right);
+                GameObject bulletY = Instantiate(prefab[0], transform.position, Quaternion.identity);
+                bulletY.GetComponent<movemnob>().setUp(Vector3.down);
+                spwanTime = 0;
             }
         }
 

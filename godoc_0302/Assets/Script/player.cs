@@ -48,7 +48,7 @@ public class player : MonoBehaviour
         {
             GameObject bulletobj = Instantiate(bullet, transform.position, quaternion.identity);
             bulletobj.GetComponent<movemnob>().setUp(bulletDirection);
-            bullet.GetComponent<SpriteRenderer>().color = Color.blue;
+            // bullet.GetComponent<SpriteRenderer>().color = Color
 
         }
     }
