@@ -4,7 +4,7 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class movemnob : MonoBehaviour
+public class projectile : MonoBehaviour
 {
     public float moveSpeed = 3;
 
