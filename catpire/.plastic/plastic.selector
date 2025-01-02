@@ -1,0 +1,4 @@
+repository "catpire@damchan113@cloud"
+  path "/"
+    br "/main"
+    co "/main"

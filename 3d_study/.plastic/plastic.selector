@@ -1,0 +1,4 @@
+repository "3d_study@damchan113@cloud"
+  path "/"
+    br "/main"
+    co "/main"

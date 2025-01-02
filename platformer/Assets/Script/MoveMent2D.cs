@@ -16,7 +16,7 @@ public class MoveMent2D : MonoBehaviour
 
     private CapsuleCollider2D capsuleCollider2D;
     private Vector3 footPosition;
-    bool isJumping = false;
+    private bool isJumping = false;
     private void Awake()
     {
         rigid2D = GetComponent<Rigidbody2D>();
@@ -27,8 +27,14 @@ public class MoveMent2D : MonoBehaviour
     {
         CheckLongJump();
         isJumping = CheckJumping();
-    }
 
+
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(footPosition, 0.1f);
+    }
     public void Move(float x)
     {
         rigid2D.velocity = new Vector3(x * moveSpeed, rigid2D.velocity.y, 0);
@@ -36,26 +42,24 @@ public class MoveMent2D : MonoBehaviour
 
     public void Jump()
     {
-        if (isJumping)
+        if (!isJumping)
             rigid2D.velocity = Vector2.up * jumpPower;
     }
 
-    private bool CheckLongJump()
+
+    private void CheckLongJump()
     {
         if (isLongJump && rigid2D.velocity.y > 0)
         {
             rigid2D.gravityScale = 0.5f;
             Debug.Log("LongJump");
-            return true;
         }
-        else
+        else if (rigid2D.velocity.y > 0 && !isLongJump)
         {
             rigid2D.gravityScale = 1f;
             Debug.Log("NormalJump");
-            return false;
         }
     }
-
     private bool CheckJumping()
     {
         bool isGrounded;
@@ -63,7 +67,11 @@ public class MoveMent2D : MonoBehaviour
         footPosition = new Vector3(bounds.center.x, bounds.min.y, bounds.center.z);
         isGrounded = Physics2D.OverlapCircle(footPosition, 0.1f, LayerMask.GetMask("Ground"));
 
-        return isGrounded;
+        if (isGrounded)
+        {
+            Debug.Log("now jumping : " + !isGrounded);
+        }
+        return !isGrounded;
 
     }
     // Start is called before the first frame update

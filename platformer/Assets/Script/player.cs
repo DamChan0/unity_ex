@@ -17,6 +17,8 @@ public class player : MonoBehaviour
     private Vector3 bulletDirection = Vector3.right;
     private Rigidbody2D rigid2D;
     private float JumpOn = 0;
+    private const float longJumpThreshold = 2f; // 1 second
+    private float spaceKeyPressTime = 0f;
     private void Awake()
     {
         moveMent2D = GetComponent<MoveMent2D>();
@@ -31,21 +33,27 @@ public class player : MonoBehaviour
         float y = Input.GetAxisRaw("Vertical");
 
         moveMent2D.Move(x);
-        JumpOn = Input.GetKeyDown(key: KeyCode.Space) ? 1 : 0;
-
-
-        if (JumpOn > 0)
-        {
-            moveMent2D.Jump();
-        }
+        // JumpOn = Input.GetKeyDown(key: KeyCode.Space) ? 1 : 0;
 
         if (Input.GetKey(KeyCode.Space))
         {
-            moveMent2D.isLongJump = true;
+            spaceKeyPressTime += Time.deltaTime;
+            Debug.Log(spaceKeyPressTime);
         }
         else if (Input.GetKeyUp(KeyCode.Space))
         {
-            moveMent2D.isLongJump = false;
+            if (spaceKeyPressTime >= longJumpThreshold)
+            {
+                moveMent2D.Jump();
+                moveMent2D.isLongJump = true;
+            }
+            else
+            {
+                moveMent2D.Jump();
+                moveMent2D.isLongJump = false;
+            }
+            spaceKeyPressTime = 0f; // Reset the timer
+
         }
 
         // if (x != 0 || y != 0)
