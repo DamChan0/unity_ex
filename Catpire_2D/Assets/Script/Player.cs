@@ -12,8 +12,7 @@ public class Player : MonoBehaviour
 
     private Vector3 step;
 
-    public Vector2 moveInput;
-    private Vector3 moveDirection;
+    public Vector2 inputVector;
     private Transform playerTransform;
     private SpriteRenderer playerSprite;
 
@@ -34,29 +33,28 @@ public class Player : MonoBehaviour
 
     private void LateUpdate()           // LateUpdate is called after Update each frame
     {
-        if (moveInput.x != 0)
+        if (inputVector.x != 0)
         {
-            playerSprite.flipX = moveInput.x < 0; // moceInput.x < 0 is true when the player is moving left
+            playerSprite.flipX = inputVector.x < 0; // moceInput.x < 0 is true when the player is moving left
         }
 
-        playerAnim.SetFloat("Speed", moveInput.magnitude);          // maganitude is the length of the vector
-
+        playerAnim.SetFloat("Speed", inputVector.magnitude);          // maganitude is the length of the vector
     }
 
-    void OnMove(InputValue value)
+    void OnMove(InputValue value)   // onMove 라는 이름은 playerInput 에서 설정한 Action 의 이름에 들어있다.
     {
-        moveInput = value.Get<Vector2>();
-        step.x = moveInput.x;
+        inputVector = value.Get<Vector2>();
+        step.x = inputVector.x;
         print(step.x);
 
-        step.y = moveInput.y;
+        step.y = inputVector.y;
         print(step.y);
     }
 
 
     private void move()
     {
-        moveDirection = new Vector3(step.x, step.y, 0);                                   // Get the direction
+        Vector3 moveDirection = new Vector3(step.x, step.y, 0);                                   // Get the direction
         playerTransform.transform.position += moveDirection * speed * Time.deltaTime;   // Move the player
     }
 

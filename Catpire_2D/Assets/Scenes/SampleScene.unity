@@ -13079,6 +13079,7 @@ GameObject:
   - component: {fileID: 745310220}
   - component: {fileID: 745310219}
   - component: {fileID: 745310218}
+  - component: {fileID: 745310221}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -13160,6 +13161,26 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2007220005}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &745310221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 745310217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a160d838ff8b4b4693ac20007e008c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AssetsPPU: 18
+  m_RefResolutionX: 320
+  m_RefResolutionY: 180
+  m_UpscaleRT: 0
+  m_PixelSnapping: 0
+  m_CropFrameX: 0
+  m_CropFrameY: 0
+  m_StretchFill: 0
 --- !u!1 &1132949372
 GameObject:
   m_ObjectHideFlags: 0
@@ -17687,7 +17708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  moveInput: {x: 0, y: 0}
+  inputVector: {x: 0, y: 0}
 --- !u!70 &1983684953
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -17983,7 +18004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
-  moveInput: {x: 0, y: 0}
+  inputVector: {x: 0, y: 0}
 --- !u!114 &2007220010
 MonoBehaviour:
   m_ObjectHideFlags: 0
