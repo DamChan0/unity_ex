@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UIElements;
 using UnityEngine.Windows;
 
 public class Player : MonoBehaviour
@@ -33,12 +34,7 @@ public class Player : MonoBehaviour
 
     private void LateUpdate()           // LateUpdate is called after Update each frame
     {
-        if (inputVector.x != 0)
-        {
-            playerSprite.flipX = inputVector.x < 0; // moceInput.x < 0 is true when the player is moving left
-        }
-
-        playerAnim.SetFloat("Speed", inputVector.magnitude);          // maganitude is the length of the vector
+        flipSprite();
     }
 
     void OnMove(InputValue value)   // onMove 라는 이름은 playerInput 에서 설정한 Action 의 이름에 들어있다.
@@ -51,13 +47,22 @@ public class Player : MonoBehaviour
         print(step.y);
     }
 
-
+    //    functions 
     private void move()
     {
         Vector3 moveDirection = new Vector3(step.x, step.y, 0);                                   // Get the direction
         playerTransform.transform.position += moveDirection * speed * Time.deltaTime;   // Move the player
     }
 
+    private void flipSprite()
+    {
+        if (inputVector.x != 0)
+        {
+            playerSprite.flipX = inputVector.x < 0; // moceInput.x < 0 is true when the player is moving left
+        }
+
+        playerAnim.SetFloat("Speed", inputVector.magnitude);          // maganitude is the length of the vector
+    }
 
 
 
