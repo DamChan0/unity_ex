@@ -27,11 +27,9 @@ public class player : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
-        // moveDirection = new Vector3(-x, -y, 0);
-        // transform.position += moveDirection * Time.deltaTime * moveSpeed;
         if (x != 0 || y != 0)
         {
-            bulletDirection = new Vector3(x, y, 0);
+            bulletDirection = new Vector3(x, y, 0).normalized;
         }
 
         rigid2D.velocity = new Vector3(x, y, 0) * moveSpeed;
