@@ -40,18 +40,14 @@ public class Player : MonoBehaviour
     void OnMove(InputValue value)   // onMove 라는 이름은 playerInput 에서 설정한 Action 의 이름에 들어있다.
     {
         inputVector = value.Get<Vector2>();
-        step.x = inputVector.x;
-        print(step.x);
-
-        step.y = inputVector.y;
-        print(step.y);
     }
 
     //    functions 
     private void move()
     {
-        Vector3 moveDirection = new Vector3(step.x, step.y, 0);                                   // Get the direction
+        Vector3 moveDirection = new Vector3(inputVector.x, inputVector.y, 0);                                   // Get the direction
         playerTransform.transform.position += moveDirection * speed * Time.deltaTime;   // Move the player
+
     }
 
     private void flipSprite()

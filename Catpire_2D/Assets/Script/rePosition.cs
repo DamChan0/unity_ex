@@ -3,9 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
 public class rePosition : MonoBehaviour
 {
+    Collider2D collider;
+    SpriteRenderer sprite;
+    private void Awake()
+    {
+        collider = GetComponent<Collider2D>();
+    }
+    private bool isEnemyAlive = true;
     void OnTriggerExit2D(Collider2D collider)
     {
 
@@ -37,7 +43,10 @@ public class rePosition : MonoBehaviour
                 }
                 break;
             case "Enemy":
-
+                if (collider.enabled)
+                {
+                    transform.Translate(playDirection * 20 + new Vector3(UnityEngine.Random.Range(-3f, 3f), UnityEngine.Random.Range(-3f, 3f), 0));
+                }
                 break;
 
         }

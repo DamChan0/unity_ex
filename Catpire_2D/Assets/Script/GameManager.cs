@@ -11,9 +11,22 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Debug.LogWarning("Multiple GameManager instances found!");
+            Destroy(gameObject);
+        }
+        if (GameManager.instance.player == null)
+        {
+            Debug.LogError("Player reference is not set in GameManager!");
+        }
 
     }
+
     void Update()
     {
 
