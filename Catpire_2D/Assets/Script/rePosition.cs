@@ -5,13 +5,11 @@ using Unity.VisualScripting;
 using UnityEngine;
 public class rePosition : MonoBehaviour
 {
-    Collider2D collider;
     SpriteRenderer sprite;
     private void Awake()
     {
-        collider = GetComponent<Collider2D>();
     }
-    private bool isEnemyAlive = true;
+    // private bool isEnemyAlive = true;
     void OnTriggerExit2D(Collider2D collider)
     {
 
