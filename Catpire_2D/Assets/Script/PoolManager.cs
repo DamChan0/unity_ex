@@ -39,7 +39,7 @@ public class PoolManager : MonoBehaviour
 
         if (obj == null)
         {
-            obj = Instantiate(prefabs[index]);
+            obj = Instantiate(prefabs[index], transform);
             poolList[index].Add(obj);
         }
 
