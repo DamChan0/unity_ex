@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     public Player player;
     public static GameManager instance;
+
+    public PoolManager poolManager;
     // Update is called once per frame
 
     private void Awake()
