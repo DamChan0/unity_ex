@@ -11,13 +11,13 @@ public class movemnob : MonoBehaviour
     private Vector3 moveDirection = Vector3.zero;
 
     private Rigidbody2D rigid2D;
-    float maxX = 10.0f; float maxY = 10.0f;
+    // float maxX = 10.0f; float maxY = 10.0f;
 
     Vector3 rightEdgeWorldPos;
     Vector3 topEdgeWorldPos;
-    public void setUp(Vector3 moveDirection)
+    public void setUp(Vector3 bulletDirection)
     {
-        this.moveDirection = moveDirection;
+        this.moveDirection = bulletDirection;
     }
     private void Awake()
     {
